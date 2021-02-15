@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finder-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: finder
+  template:
+    metadata:
+      labels:
+        component: finder
+    spec:
+      containers:
+        - name: finder
+          image: mikebychkov/sb-finder:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5002
+          env:
+            - name: "PROFILE"
+              value: "kube"
+            - name: "REDIS_SERVER"
+              value: "http://redis-cluster-ip-service:6379"

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: posts
+  template:
+    metadata:
+      labels:
+        component: posts
+    spec:
+      containers:
+        - name: posts
+          image: mikebychkov/sb-posts:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5001
+          env:
+            - name: "PROFILE"
+              value: "kube"
+            - name: "DB_SERVER"
+              value: "http://db-cluster-ip-service:5432"

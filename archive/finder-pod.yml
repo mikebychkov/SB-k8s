@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: finder-pod
+  labels:
+    component: web
+spec:
+  containers:
+    - name: finder
+      image: mikebychkov/sb-finder
+      ports:
+        - containerPort: 5002
+      env:
+        - name: "PROFILE"
+          value: "doc"
+    - name: redis
+      image: redis
+      ports:
+        - containerPort: 6379
