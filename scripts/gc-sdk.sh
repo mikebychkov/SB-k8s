@@ -2,4 +2,3 @@ echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /e
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-get update && sudo apt-get install google-cloud-sdk
 sudo apt-get install kubectl
-gcloud init
