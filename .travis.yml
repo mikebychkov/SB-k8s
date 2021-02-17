@@ -2,6 +2,10 @@ branches:
   only:
     - master
 
+env:
+  global:
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 before_install:
   - openssl aes-256-cbc -K $encrypted_c8f67491a028_key -iv $encrypted_c8f67491a028_iv -in gc-service-acc.json.enc -out gc-service-acc.json -d
   - sh scripts/gc-sdk.sh
