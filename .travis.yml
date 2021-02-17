@@ -12,9 +12,7 @@ before_install:
   - gcloud auth activate-service-account --key-file gc-service-acc.json
   - gcloud config set project crafty-hall-305011
   - gcloud config set compute/zone europe-west3-a
-  - export CLOUDSDK_CORE_PROJECT=crafty-hall-305011
-  - export CLOUDSDK_COMPUTE_ZONE=europe-west3-a
-  - gcloud container clusters get-credentials k8s-cluster
+  - gcloud container clusters get-credentials k8s-new
 
 script:
   - sh scripts/tests.sh
