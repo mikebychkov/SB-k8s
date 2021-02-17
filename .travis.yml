@@ -1,6 +1,7 @@
 os: ubuntu
 dist: Focal
 before_install:
-  - openssl aes-256-cbc -K $encrypted_c8f67491a028_key -iv $encrypted_c8f67491a028_iv -in gc-service-acc.json.enc -out gc-service-acc.json -d
-  - sh scripts/gc-sdk.sh
-  - gcloud auth activate-service-account --key-file gc-service-acc.json
+- openssl aes-256-cbc -K $encrypted_c8f67491a028_key -iv $encrypted_c8f67491a028_iv
+  -in gc-service-acc.json.enc -out gc-service-acc.json -d
+- sh scripts/gc-sdk.sh
+- gcloud auth activate-service-account --key-file gc-service-acc.json
