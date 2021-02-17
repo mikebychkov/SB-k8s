@@ -1,18 +1,17 @@
+branches:
+  only:
+    - master
+
 before_install:
   - openssl aes-256-cbc -K $encrypted_c8f67491a028_key -iv $encrypted_c8f67491a028_iv -in gc-service-acc.json.enc -out gc-service-acc.json -d
   - sh scripts/gc-sdk.sh
   - gcloud auth activate-service-account --key-file gc-service-acc.json
   - gcloud config set project crafty-hall-305011
-  #- gcloud config compute/zone europe-west3-a
+  - gcloud config set compute/zone europe-west3-a
   - export CLOUDSDK_CORE_PROJECT=crafty-hall-305011
   - export CLOUDSDK_COMPUTE_ZONE=europe-west3-a
   - gcloud container clusters get-credentials k8s-cluster
 
 script:
   - sh scripts/tests.sh
-
-deploy:
-  provider: script
-  script: sh scripts/deploy.sh
-  on:
-    branch: master
+  - sh scripts/deploy.sh
