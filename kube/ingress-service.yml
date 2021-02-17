@@ -1,5 +1,5 @@
-#apiVersion: networking.k8s.io/v1
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
+#apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: ingress-service
@@ -13,18 +13,18 @@ spec:
           - path: /posts
             pathType: Prefix
             backend:
-            #  service:
-            #    name: posts-cluster-ip-service
-            #    port:
-            #      number: 5001
-              serviceName: posts-cluster-ip-service
-              servicePort: 5001
+              service:
+                name: posts-cluster-ip-service
+                port:
+                  number: 5001
+            #  serviceName: posts-cluster-ip-service
+            #  servicePort: 5001
           - path: /find
             pathType: Prefix
             backend:
-            #  service:
-            #    name: finder-cluster-ip-service
-            #    port:
-            #      number: 5002
-              serviceName: finder-cluster-ip-service
-              servicePort: 5002
+              service:
+                name: finder-cluster-ip-service
+                port:
+                  number: 5002
+            #  serviceName: finder-cluster-ip-service
+            #  servicePort: 5002
