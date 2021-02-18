@@ -15,7 +15,7 @@ spec:
       containers:
         - name: posts
           image: mikebychkov/sb-posts:latest
-          imagePullPolicy: Always
+          imagePullPolicy: Never
           ports:
             - containerPort: 5001
           env:

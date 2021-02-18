@@ -15,7 +15,7 @@ spec:
       containers:
         - name: finder
           image: mikebychkov/sb-finder:latest
-          imagePullPolicy: Always
+          imagePullPolicy: Never
           ports:
             - containerPort: 5002
           env:
@@ -23,3 +23,4 @@ spec:
               value: "kube"
             - name: "REDIS_SERVER"
               value: "http://redis-cluster-ip-service:6379"
+      serviceAccountName: config-reader

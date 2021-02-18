@@ -5,12 +5,12 @@ metadata:
   name: ingress-service
   annotations:
     kubernetes.io/ingress.class: nginx
-    #nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - http:
         paths:
-          - path: /posts
+          - path: /p(/|$)(.*)
             pathType: Prefix
             backend:
               service:
@@ -19,7 +19,7 @@ spec:
                   number: 5001
             #  serviceName: posts-cluster-ip-service
             #  servicePort: 5001
-          - path: /find
+          - path: /f(/|$)(.*)
             pathType: Prefix
             backend:
               service:

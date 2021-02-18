@@ -16,4 +16,4 @@ before_install:
 
 script:
   - sh scripts/tests.sh
-  - sh scripts/deploy.sh
+  #- sh scripts/deploy.sh
