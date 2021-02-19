@@ -1,36 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-deployment
+  name: finder-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: posts
+      component: finder
   template:
     metadata:
       labels:
-        component: posts
+        component: finder
     spec:
       serviceAccountName: config-reader
       containers:
-        - name: posts
-          image: mikebychkov/sb-posts:latest
+        - name: finder
+          image: mikebychkov/sb-finder:latest
           imagePullPolicy: Never
           ports:
-            - containerPort: 5001
+            - containerPort: 5002
           env:
             - name: "PROFILE"
               value: "kube"
-            - name: "DB_SERVER"
-              value: "tcp://db-cluster-ip-service:5432"
+            - name: "REDIS_SERVER"
+              value: "tcp://redis-cluster-ip-service:6379"
             - name: "KAFKA_SERVER"
-              value: "http://kafka-cluster-ip-service:9092"
+              value: "tcp://kafka-cluster-ip-service"
           readinessProbe:
             failureThreshold: 3
             httpGet:
               path: /actuator/health
-              port: 5001
+              port: 5002
               scheme: HTTP
             initialDelaySeconds: 10
             successThreshold: 1
@@ -38,7 +38,7 @@ spec:
           #   failureThreshold: 3
           #   httpGet:
           #     path: /actuator/health
-          #     port: 5001
+          #     port: 5002
           #     scheme: HTTP
           #   initialDelaySeconds: 180
           #   successThreshold: 1

@@ -6,4 +6,7 @@ data:
   application.yaml: |-
     some:
       config:
-        value: ANGELBOOBS-777
+        value: STOPBOOBS
+    logging:
+      level:
+        org.apache.kafka: DEBUG
