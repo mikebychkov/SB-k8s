@@ -9,7 +9,7 @@ spec:
   ports:
     - port: 9092
       targetPort: 9092
-      name: "p9092"
-    - port: 9094
-      targetPort: 9094
-      name: "p9094"
+      name: "9092"
+    - port: 29092
+      targetPort: 29092
+      name: "29092"

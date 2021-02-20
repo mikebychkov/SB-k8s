@@ -25,7 +25,7 @@ spec:
             - name: "REDIS_SERVER"
               value: "tcp://redis-cluster-ip-service:6379"
             - name: "KAFKA_SERVER"
-              value: "tcp://kafka-cluster-ip-service"
+              value: "kafka-cluster-ip-service:9092"
           readinessProbe:
             failureThreshold: 3
             httpGet:
