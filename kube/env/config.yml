@@ -9,4 +9,5 @@ data:
         value: FUCKWARMAKELOVE
     logging:
       level:
-        org.springframework: WARN
+        org.springframework.cloud: DEBUG
+        org.mike: DEBUG

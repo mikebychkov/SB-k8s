@@ -6,19 +6,24 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      component: kafka
+      component: my-kafka
   template:
     metadata:
       labels:
-        component: kafka
+        component: my-kafka
     spec:
+      serviceAccountName: config-reader
       containers:
-        - name: kafka
+        - name: my-kafka
           image: wurstmeister/kafka
           ports:
             - containerPort: 9092
             - containerPort: 29092
           env:
+            - name: "KAFKA_PORT"
+              value: "9092"
+            - name: "ALLOW_PLAINTEXT_LISTENER"
+              value: "yes"
             - name: "KAFKA_ZOOKEEPER_CONNECT"
               value: "zookeeper-cluster-ip-service"
             - name: "KAFKA_LISTENERS"

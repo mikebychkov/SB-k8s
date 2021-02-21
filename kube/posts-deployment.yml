@@ -24,10 +24,6 @@ spec:
               value: "kube"
             - name: "DB_SERVER"
               value: "tcp://db-cluster-ip-service:5432"
-            - name: "KAFKA_SERVER"
-              value: "http://kafka-cluster-ip-service:9092"
-            - name: "ZK_SERVER"
-              value: "zookeeper-cluster-ip-service"
           readinessProbe:
             failureThreshold: 3
             httpGet:
