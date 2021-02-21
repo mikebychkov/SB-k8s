@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: auth
+  template:
+    metadata:
+      labels:
+        component: auth
+    spec:
+      serviceAccountName: config-reader
+      containers:
+        - name: auth
+          image: mikebychkov/sb-auth:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5005
+          env:
+            - name: "PROFILE"
+              value: "kube"
+            - name: "DB_SERVER"
+              value: "tcp://db-cluster-ip-service:5432"
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 5005
+              scheme: HTTP
+            initialDelaySeconds: 10
+            successThreshold: 1
+          # livenessProbe:
+          #   failureThreshold: 3
+          #   httpGet:
+          #     path: /actuator/health
+          #     port: 5001
+          #     scheme: HTTP
+          #   initialDelaySeconds: 180
+          #   successThreshold: 1
