@@ -28,3 +28,12 @@ spec:
                   number: 5002
             #  serviceName: finder-cluster-ip-service
             #  servicePort: 5002
+          - path: /a(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-cluster-ip-service
+                port:
+                  number: 5005
+            #  serviceName: finder-cluster-ip-service
+            #  servicePort: 5002

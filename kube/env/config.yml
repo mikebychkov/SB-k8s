@@ -9,5 +9,9 @@ data:
         value: FUCKWARMAKELOVE
     logging:
       level:
-        org.springframework.cloud: DEBUG
+        org.springframework.cloud: WARN
         org.mike: DEBUG
+    security:
+      oauth2:
+        resource:
+          user-info-uri: http://auth-cluster-ip-service:5005/user/
